@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import LabelForm from "../atoms/LabelForm";
 import InputPassword from "../atoms/InputPassword";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../libs/axios";
 
 const FormRegister = () => {
   const dispatch = useDispatch();
@@ -61,10 +61,15 @@ const FormRegister = () => {
     try {
       const { firstName, lastName, userName, email, password, dob, interest } =
         data;
-      const response = await axios.post(
-        "https://maroon-basket-clam-sock.cyclic.app/api/v1/auth/register",
-        { firstName, lastName, userName, email, password, dob, interest }
-      );
+      const response = await axiosInstance.post("/api/v1/auth/register", {
+        firstName,
+        lastName,
+        userName,
+        email,
+        password,
+        dob,
+        interest,
+      });
 
       console.log(response.data.data.userName);
       dispatch({

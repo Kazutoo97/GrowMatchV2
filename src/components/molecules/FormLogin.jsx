@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonSubmit from "../atoms/ButtonSubmit";
-import axios from "axios";
 import InputPassword from "../atoms/InputPassword";
 import ButtonLink from "../atoms/ButtonLink";
 import ForgotPassword from "../atoms/ForgotPassword";
@@ -9,6 +8,7 @@ import { useForm } from "react-hook-form";
 import LabelForm from "../atoms/LabelForm";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../../libs/axios";
 
 const FormLogin = () => {
   const dispatch = useDispatch();
@@ -56,10 +56,10 @@ const FormLogin = () => {
     const { userName, password } = data;
 
     try {
-      const response = await axios.post(
-        "https://maroon-basket-clam-sock.cyclic.app/api/v1/auth/login",
-        { userName, password }
-      );
+      const response = await axiosInstance.post("api/v1/auth/login", {
+        userName,
+        password,
+      });
       console.log(response.data);
       const { token } = response.data.data;
       localStorage.setItem("user", JSON.stringify(token));
