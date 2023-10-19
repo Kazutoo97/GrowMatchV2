@@ -62,7 +62,7 @@ const FormRegister = () => {
       const { firstName, lastName, userName, email, password, dob, interest } =
         data;
       const response = await axios.post(
-        "http://localhost:8000/api/v1/auth/register",
+        "https://maroon-basket-clam-sock.cyclic.app/api/v1/auth/register",
         { firstName, lastName, userName, email, password, dob, interest }
       );
 

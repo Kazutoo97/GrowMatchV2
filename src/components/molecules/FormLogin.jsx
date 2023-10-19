@@ -57,7 +57,7 @@ const FormLogin = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/auth/login",
+        "https://maroon-basket-clam-sock.cyclic.app/api/v1/auth/login",
         { userName, password }
       );
       console.log(response.data);
